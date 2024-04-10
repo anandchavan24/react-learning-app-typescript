@@ -1,4 +1,4 @@
-import { ToDoProps } from "../Shared/interface";
+import { ToDoProps } from "../Shared/types";
 
 const Todo = ({ todo, markCompleted, deleteTodo }:ToDoProps) => {
   const handleCompleted = () => {

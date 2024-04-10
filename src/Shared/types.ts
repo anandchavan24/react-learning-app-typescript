@@ -1,17 +1,17 @@
-export interface ToDoInterface {
+export interface ITodo {
     id: number
     text: string
     completed: boolean
 }
 
-export interface ToDoListProps {
-    todos: ToDoInterface[];
+export interface ITToDoListProps {
+    todos: ITodo[];
     markCompleted: (id: number) => any;  
     deleteTodo: (id: number) => any; 
   }
 
-  export interface ToDoProps {
-    todo: ToDoInterface;
+  export interface ITToDoProps {
+    todo: ITodo;
     markCompleted: (id: number) => any;  
     deleteTodo: (id: number) => any; 
   }

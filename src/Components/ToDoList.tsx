@@ -1,10 +1,10 @@
-import { ToDoInterface, ToDoListProps } from '../Shared/interface'
+import { ITodo, ITToDoListProps } from '../Shared/types'
 import Todo from './ToDo'
 
-const ToDoList = ({ todos, markCompleted, deleteTodo }: ToDoListProps) => {
+const ToDoList = ({ todos, markCompleted, deleteTodo }: ITToDoListProps) => {
   return (
     <div className='todo-list'>
-      {todos.map((todo: ToDoInterface) => (
+      {todos.map((todo: ITodo) => (
         <Todo key={todo.id} todo={todo} markCompleted={markCompleted} deleteTodo={deleteTodo} />
       ))}
     </div>
