@@ -1,6 +1,6 @@
-import { ToDoProps } from "../Shared/types";
-
-const Todo = ({ todo, markCompleted, deleteTodo }:ToDoProps) => {
+import { ITToDoProps } from "../Shared/types";
+  
+  const Todo = ({ todo, markCompleted, deleteTodo }:ITToDoProps) => {
   const handleCompleted = () => {
     markCompleted(todo.id);
   };
@@ -12,7 +12,7 @@ const Todo = ({ todo, markCompleted, deleteTodo }:ToDoProps) => {
   return (
     <div className={`todo ${todo.completed ? 'completed' : ''}`}>
       <input type="checkbox" checked={todo.completed} onChange={handleCompleted} />
-      <span>{todo.text}</span>
+      <span>{todo.title}</span>
       <button onClick={handleDelete}>Delete</button>
     </div>
   );

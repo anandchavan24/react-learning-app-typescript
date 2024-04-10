@@ -1,29 +1,47 @@
 import './App.css';
-
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import TodoList from './Components/ToDoList';
-import { ITodo } from './Shared/types';
-import { data } from './Shared/sample.json';
+import { IToDoResp } from './Shared/types';
+import useFetch from './Components/useFetch';
 
 function App() {
-  const toDoArray:ITodo[] = data.sampleDataForList;
+  const { data, loading, error } = useFetch('https://jsonplaceholder.typicode.com/todos');
+
+  useEffect(() => {
+    if (data) {
+      setTodos(data);
+    }
+  }, [data]);
+
+
+  const toDoArray:IToDoResp[] | null = data;
+  
   const [todos, setTodos] = useState(toDoArray);
 
-  const markCompleted = (id:number) => {
-    setTodos((prevTodos:ITodo[]) =>
-      prevTodos.map((todo:ITodo) => (todo.id === id ? { ...todo, completed: !todo.completed } : todo))
-    );
+
+  const markCompleted = (id: number) => {
+    if (todos) {
+      const updatedTodos = todos.map(todo =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      );
+      setTodos(updatedTodos);
+    }
   };
 
-  const deleteTodo = (id:number) => {
-    setTodos((todos.filter((todo) => todo.id !== id)));
-    // setTodos((prevTodos:ToDoInterface[]) => prevTodos.filter((todo) => todo.id !== id));
+  const deleteTodo = (id: number) => {
+    if (todos) {
+      const updatedTodos = todos.filter(todo => todo.id !== id);
+      setTodos(updatedTodos);
+    }
   };
+
   return (
     <div className="app">
-      <h1>Todo List</h1>
-      <TodoList todos={todos} markCompleted={markCompleted} deleteTodo={deleteTodo} />
-    </div>
+    <h1>Todo List</h1>
+    {loading && <p>Loading...</p>}
+    {error && <div className="error-banner">{error}</div>}
+    {todos && <TodoList todos={todos} markCompleted={markCompleted} deleteTodo={deleteTodo} />}
+  </div>
   );
 }
 
