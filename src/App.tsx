@@ -7,7 +7,7 @@ import useFetch from './Components/useFetch';
 function App() {
   const [todos, setTodos] = useState<IToDoResp[] | null>(null);
 
-  const { data, loading, error } = useFetch('https://jsonplaceholder.typicode.com/todos');
+  const { data, loading, error }:{ data: IToDoResp[] | null; loading: boolean; error: string | null } = useFetch('https://jsonplaceholder.typicode.com/todos');
 
   useEffect(() => {
     if (data) {
@@ -17,7 +17,7 @@ function App() {
 
   const markCompleted = (id: number) => {
     if (todos) {
-      const updatedTodos = todos.map(todo =>
+      const updatedTodos:IToDoResp[] | null = todos.map(todo =>
         todo.id === id ? { ...todo, completed: !todo.completed } : todo
       );
       setTodos(updatedTodos);
