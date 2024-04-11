@@ -5,6 +5,8 @@ import { IToDoResp } from './Shared/types';
 import useFetch from './Components/useFetch';
 
 function App() {
+  const [todos, setTodos] = useState<IToDoResp[] | null>(null);
+
   const { data, loading, error } = useFetch('https://jsonplaceholder.typicode.com/todos');
 
   useEffect(() => {
@@ -12,12 +14,6 @@ function App() {
       setTodos(data);
     }
   }, [data]);
-
-
-  const toDoArray:IToDoResp[] | null = data;
-  
-  const [todos, setTodos] = useState(toDoArray);
-
 
   const markCompleted = (id: number) => {
     if (todos) {
