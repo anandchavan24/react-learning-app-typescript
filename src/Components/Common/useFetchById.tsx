@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import { IToDoResp } from '../Shared/types';
+import { IToDoResp } from '../../Shared/types';
 
 
-const useFetch = (url: string): { data: IToDoResp[] | null; loading: boolean; error: string | null } => {
-  const [data, setData] = useState<IToDoResp[] | null>(null);
+const useFetchById = (url: string): { data:  IToDoResp | null; loading: boolean; error: string | null } => {
+  const [data, setData] = useState<IToDoResp | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -33,4 +33,4 @@ const useFetch = (url: string): { data: IToDoResp[] | null; loading: boolean; er
   return { data, loading, error };
 };
 
-export default useFetch;
+export default useFetchById;
