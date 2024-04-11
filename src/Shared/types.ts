@@ -5,15 +5,23 @@ export interface ITodo {
 }
 
 export interface ITToDoListProps {
-    todos: ITodo[];
+    todos: IToDoResp[];
     markCompleted: (id: number) => any;  
     deleteTodo: (id: number) => any; 
   }
 
   export interface ITToDoProps {
-    todo: ITodo;
+    todo: IToDoResp;
     markCompleted: (id: number) => any;  
     deleteTodo: (id: number) => any; 
   }
+
+  export interface IToDoResp {
+    userId: number
+    id: number
+    title: string
+    completed: boolean
+  }
+  
 
   
