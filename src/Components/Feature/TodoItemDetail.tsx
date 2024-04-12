@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { IToDoResp } from "../../Shared/types";
+import { IToDoResp, IToDoRespById } from "../../Shared/types";
 import useFetchById from "../Common/useFetchById";
-import Todo from "./ToDo";
 import { useParams } from "react-router-dom";
 
 const TodoItemDetail = () =>{
@@ -9,7 +8,7 @@ const TodoItemDetail = () =>{
 
     const [todos, setTodos] = useState<IToDoResp | null>(null);
 
-    const { data, loading, error }:{ data:IToDoResp | null; loading: boolean; error: string | null } = useFetchById('https://jsonplaceholder.typicode.com/todos/'+id);
+    const { data, loading, error }:IToDoRespById = useFetchById('https://jsonplaceholder.typicode.com/todos/'+id);
   
     useEffect(() => {
       if (data) {
@@ -17,19 +16,6 @@ const TodoItemDetail = () =>{
       }
     }, [data]);
   
-    const markCompleted = (id: number) => {
-      if (todos ) {
-        todos.completed  = !todos.completed
-        setTodos(todos);
-      }
-    };
-  
-    const deleteTodo = (id: number) => {
-      if (todos) {
-        // const updatedTodos = todos.filter(todo => todo.id !== id);
-        setTodos(todos);
-      }
-    };
   
     return (
       <div className='todo-list'>

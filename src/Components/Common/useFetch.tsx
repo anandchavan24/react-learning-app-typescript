@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { IToDoResp } from '../../Shared/types';
+import { IToDoResp, IToDoRespD } from '../../Shared/types';
 
 
-const useFetch = (url: string): { data: IToDoResp[] | null; loading: boolean; error: string | null } => {
+const useFetch = (url: string): IToDoRespD => {
   const [data, setData] = useState<IToDoResp[] | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);

@@ -1,39 +1,32 @@
 import React, { useState } from 'react';
+import { IToDoReq, IToDoResp } from '../../Shared/types';
+import AddFetch from '../Common/addFetch';
 
 const AddTodo = () => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
+  const { data, loading, error}:
+  { data: IToDoResp | null; loading: boolean; error: string | null } =  
+  AddFetch('https://jsonplaceholder.typicode.com/todos',{
+    title,
+    body,
+    userId: 1,
+  },formSubmitted,setFormSubmitted);
+
+
 
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
+    handleToDoAdd();
+  };
 
-    try {
-      const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
-        method: 'POST',
-        body: JSON.stringify({
-          title,
-          body,
-          userId: 1,
-        }),
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8',
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to add todo item');
-      }
-
-      const data = await response.json();
-      console.log('Todo item added:', data);
-      
-      // Clear form fields after successful submission
+  const handleToDoAdd = async () => {
+      setFormSubmitted(true)
       setTitle('');
       setBody('');
-    } catch (error) {
-      console.error('Error adding todo item:', error);
-    }
-  };
+  }
 
   return (
     <div>

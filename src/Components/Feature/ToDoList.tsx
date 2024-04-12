@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
-import { IToDoResp } from '../../Shared/types'
+import { IToDoResp, IToDoRespD } from '../../Shared/types'
 import Todo from './ToDo'
 import useFetch from '../Common/useFetch';
-import { Link } from 'react-router-dom';
 
 
 const ToDoList = () => {
   const [todos, setTodos] = useState<IToDoResp[] | null>(null);
 
-  const { data, loading, error }:{ data: IToDoResp[] | null; loading: boolean; error: string | null } = useFetch('https://jsonplaceholder.typicode.com/todos');
+  const { data, loading, error }:IToDoRespD = useFetch('https://jsonplaceholder.typicode.com/todos');
 
   useEffect(() => {
     if (data) {
