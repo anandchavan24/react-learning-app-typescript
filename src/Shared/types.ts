@@ -22,6 +22,24 @@ export interface ITToDoListProps {
     title: string
     completed: boolean
   }
+
+  export interface IToDoReq {
+    userId: number
+    title: string
+    body: string
+  }
+
+  export interface IToDoRespD { 
+    data: IToDoResp[] | null,
+    loading: boolean,
+    error: string | null 
+  }
+
+  export interface IToDoRespById { 
+    data: IToDoResp | null,
+    loading: boolean,
+    error: string | null 
+  }
   
 
   
