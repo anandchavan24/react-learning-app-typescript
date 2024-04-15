@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent } from 'react';
 
 interface FilterBarProps {
-    handleSearch: (value: string) => void;
-    handleSort: (value: string) => void;
-    handleStatus: (value: string) => void;
+    handleSearch: (e: ChangeEvent<HTMLInputElement>)=> void;
+    handleSort: (e: ChangeEvent<HTMLSelectElement>)=> void;
+    handleStatus: (e: ChangeEvent<HTMLSelectElement>) => void;
 }
 
 const FilterBar = ({
@@ -16,14 +16,14 @@ const FilterBar = ({
             <input
                 type="text"
                 placeholder="Search..."
-                onChange={(e) => handleSearch(e.target.value)}
+                onChange={handleSearch}
             />
-            <select onChange={(e) => handleSort(e.target.value)}>
+            <select onChange={handleSort}>
                 <option value="">Sort By</option>
                 <option value="asc">Ascending</option>
                 <option value="desc">Descending</option>
             </select>
-            <select onChange={(e) => handleStatus(e.target.value)}>
+            <select onChange={handleStatus}>
                 <option value="">Filter By Status</option>
                 <option value="pending">Pending</option>
                 <option value="completed">Completed</option>

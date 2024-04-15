@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { IToDoResp, IToDoRespD } from '../../Shared/types'
 import Todo from './ToDo'
 import useFetch from '../Common/useFetch';
@@ -11,7 +11,6 @@ const ToDoList = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [sortBy, setSortBy] = useState<string>('');
   const [statusFilter, setStatusFilter] = useState<string>('');
-  // const [todos, setTodos] = useState<IToDoResp[]>([]);
   const { data, loading, error }:IToDoRespD = useFetch('https://jsonplaceholder.typicode.com/todos');
 
   useEffect(() => {
@@ -38,34 +37,35 @@ const ToDoList = () => {
   };
 
     // Handle search input
-    const handleSearch = (value: string) => {
-      setSearchTerm(value);
-      filterTodos(value, sortBy, statusFilter);
+    const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+      setSearchTerm(e.target.value);
+      filterTodos(e.target.value, sortBy, statusFilter);
   };
 
   // Handle sort dropdown
-  const handleSort = (value: string) => {
-      setSortBy(value);
-      filterTodos(searchTerm, value, statusFilter);
+  const handleSort = (e: ChangeEvent<HTMLSelectElement>) => {
+      setSortBy(e.target.value);
+      filterTodos(searchTerm, e.target.value, statusFilter);
   };
 
   // Handle status dropdown
-  const handleStatus = (value: string) => {
-      setStatusFilter(value);
-      filterTodos(searchTerm, sortBy, value);
+  const handleStatus = (e: ChangeEvent<HTMLSelectElement>) => {
+      setStatusFilter(e.target.value);
+      filterTodos(searchTerm, sortBy, e.target.value);
   };
 
   // Filter todos based on search term, sort, and status
   const filterTodos = (search: string, sort: string, status: string) => {
-      let filtered = filteredTodos && filteredTodos.filter(todo =>
-          todo.title.toLowerCase().includes(search.toLowerCase())
-      );
+      let filtered = filteredTodos ?? []
 
-      console.log(search);
-
-      if(search === ''){
+      if(!search){
         setFilteredTodos(originalTodos);
         filtered = originalTodos
+      }
+      else{
+        filtered = filtered.filter(todo =>
+          todo.title.toLowerCase().includes(search.toLowerCase())
+        );
       }
 
       if (sort === 'asc') {

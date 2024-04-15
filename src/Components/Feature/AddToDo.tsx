@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IToDoReq, IToDoResp } from '../../Shared/types';
+import {  IToDoResp } from '../../Shared/types';
 import AddFetch from '../Common/addFetch';
 
 const AddTodo = () => {
