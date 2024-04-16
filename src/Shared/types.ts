@@ -40,6 +40,12 @@ export interface ITToDoListProps {
     loading: boolean,
     error: string | null 
   }
+
+  export interface FilterBarProps {
+    handleSearch: (value: string) => void;
+    handleSort: (value: string) => void;
+    handleStatus: (value: string) => void;
+  }
   
 
   

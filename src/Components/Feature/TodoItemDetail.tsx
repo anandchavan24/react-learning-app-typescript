@@ -23,7 +23,6 @@ const TodoItemDetail = () =>{
         {loading && <p>Loading...</p>}
         {error && <div className="error-banner">{error}</div>}
         {todos && <p>{todos.title}</p>}
-        {/* {todos && <Todo key={todos.id} todo={todos} markCompleted={markCompleted} deleteTodo={deleteTodo} />} */}
       </div>
     );
 }
