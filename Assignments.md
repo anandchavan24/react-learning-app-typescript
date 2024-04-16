@@ -30,4 +30,10 @@ Status = Completed
 
 Module = 0.5 | React Render and Optimizations
 Branch = assignment/05
-Status = Inprogress
+Status = Done
+
+## 5> Add a filter bar with three controls - search, sort and status
+
+Module = 0.7 | React Query
+Branch = assignment/06
+Status = InProgres
