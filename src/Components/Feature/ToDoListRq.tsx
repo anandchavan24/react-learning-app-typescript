@@ -1,8 +1,9 @@
 import { useQuery } from 'react-query';
 import { ChangeEvent, useState } from 'react';
 import { IToDoResp } from '../../Shared/types'
-import Todo from './ToDo'
-import FilterBar from './FIlterBar';
+import { API_URL } from '../../Shared/constants';
+import { SortUtils } from '../Utils/SortUtils';
+import TodoListContainer from './ToDoListContainer';
 
 const fetchTodos = async ({ pageNumber = 1}) => {
     const queryParams = new URLSearchParams({
@@ -12,7 +13,7 @@ const fetchTodos = async ({ pageNumber = 1}) => {
         _sort: '',
     });
 
-    const response = await fetch(`http://localhost:5000/todos?${queryParams}`);
+    const response = await fetch(`${API_URL}${queryParams}`);
     if (!response.ok) {
         throw new Error('Network response was not ok');
     }
@@ -89,13 +90,14 @@ const TodosListRqComponent = () => {
               todo.title.toLowerCase().includes(search.toLowerCase())
             );
           }
-    
+
+          
           if (sort === 'asc') {
-              filtered.sort((a, b) => a.id - b.id);
-          } else if (sort === 'desc') {
-              filtered.sort((a, b) => b.id - a.id);
+            filtered = SortUtils(filtered, 'asc');
+          } else {
+            filtered = SortUtils(filtered, 'desc');
           }
-    
+      
           if (status) {
               filtered = filtered.filter(todo => todo.completed === (status === 'completed'));
           }
@@ -103,34 +105,21 @@ const TodosListRqComponent = () => {
           setFilteredTodos(filtered);
       };
 
-      if (isLoading) return <div>Loading...</div>;
-      if (isError) return <div>Error fetching data</div>;
-
       return (
-        <div className='todo-list'>
-          <h1>To Do List Item</h1>
-          <FilterBar handleSearch={handleSearch} handleSort={handleSort} handleStatus={handleStatus}/>
-          {isLoading && <p>Loading...</p>}
-          {isError && <div className="error-banner">{error}</div>}
-          {filteredTodos!=null && filteredTodos.length>0 && filteredTodos.map((todo: IToDoResp) => (
-            <Todo key={todo.id} todo={todo} markCompleted={markCompleted} deleteTodo={deleteTodo} />
-          ))}
-         <div className="pagination-container">
-            <button
-                className="pagination-button"
-                onClick={()=>setPageNumber((page:number)=>page-1)}
-                disabled={pageNumber === 1}
-            >
-                Prev Page
-            </button>
-            <button
-                className="pagination-button"
-                onClick={()=>setPageNumber((page:number)=>page+1)}
-                disabled={pageNumber === 4}
-            >
-                Next Page
-            </button>
-        </div>
+        <div className="app-container">
+          <TodoListContainer
+            isLoading={isLoading}
+            isError={isError}
+            error={error}
+            filteredTodos={filteredTodos}
+            handleSearch={handleSearch}
+            handleSort={handleSort}
+            handleStatus={handleStatus}
+            markCompleted={markCompleted}
+            deleteTodo={deleteTodo}
+            pageNumber={pageNumber}
+            setPageNumber={setPageNumber}
+          />
         </div>
       );
 };
