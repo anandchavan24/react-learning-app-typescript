@@ -1,10 +1,6 @@
-import React, { ChangeEvent } from 'react';
+import { FilterBarProps } from '../../Shared/types';
 
-interface FilterBarProps {
-    handleSearch: (e: ChangeEvent<HTMLInputElement>)=> void;
-    handleSort: (e: ChangeEvent<HTMLSelectElement>)=> void;
-    handleStatus: (e: ChangeEvent<HTMLSelectElement>) => void;
-}
+
 
 const FilterBar = ({
     handleSearch,

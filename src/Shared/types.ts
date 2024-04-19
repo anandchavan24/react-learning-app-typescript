@@ -1,3 +1,5 @@
+import { ChangeEvent } from "react";
+
 export interface ITodo {
     id: number
     text: string
@@ -41,11 +43,23 @@ export interface ITToDoListProps {
     error: string | null 
   }
 
-  export interface FilterBarProps {
-    handleSearch: (value: string) => void;
-    handleSort: (value: string) => void;
-    handleStatus: (value: string) => void;
-  }
+ 
+  export interface  Error{
+    ErrorMessage:string
+}
+
+export interface FilterBarProps {
+  handleSearch: (e: ChangeEvent<HTMLInputElement>)=> void;
+  handleSort: (e: ChangeEvent<HTMLSelectElement>)=> void;
+  handleStatus: (e: ChangeEvent<HTMLSelectElement>) => void;
+}
+
+export interface TaskFormValues {
+  title: string;
+  description: string;
+  assignee: string;
+  dueDate: Date;
+}
   
 
   

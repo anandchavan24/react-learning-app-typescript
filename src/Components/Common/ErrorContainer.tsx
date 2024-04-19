@@ -1,7 +1,4 @@
-
-interface Error{
-    ErrorMessage:string
-}
+import { Error } from "../../Shared/types";
 
 const ErrorContainer = ({ErrorMessage}:Error) => {
     return <div>{ErrorMessage}</div>;

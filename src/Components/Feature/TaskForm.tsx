@@ -1,12 +1,6 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-
-interface TaskFormValues {
-  title: string;
-  description: string;
-  assignee: string;
-  dueDate: Date;
-}
+import { TaskFormValues } from '../../Shared/types';
 
 const TaskForm = () => {
   const initialValues: TaskFormValues = {
