@@ -86,7 +86,6 @@ h1 {
 }
 
 
-
 /* styles.css */
 
 .todo-list-container {
@@ -120,5 +119,33 @@ h1 {
   text-decoration: line-through;
 }
 
+/* Pagination style */
 
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px; /* Adjust margin as needed */
+}
+
+.pagination-button {
+  padding: 8px 16px;
+  margin: 0 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  color: #333;
+  cursor: pointer;
+  outline: none;
+}
+
+.pagination-button:hover {
+  background-color: #e0e0e0;
+}
+
+.pagination-button:disabled {
+  background-color: #f0f0f0;
+  color: #ccc;
+  cursor: not-allowed;
+}
 
