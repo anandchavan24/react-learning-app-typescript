@@ -32,8 +32,14 @@ Module = 0.5 | React Render and Optimizations
 Branch = assignment/05
 Status = Done
 
-## 5> Add a filter bar with three controls - search, sort and status
+## 6> Add a filter bar with three controls - search, sort and status
 
 Module = 0.7 | React Query
 Branch = assignment/06
-Status = InProgres
+Status = Done
+
+## 6> Create a task form with title, description, assignee and due date fields
+
+Module = 0.8 | React Formik
+Branch = assignment/07
+Status = InProgress
