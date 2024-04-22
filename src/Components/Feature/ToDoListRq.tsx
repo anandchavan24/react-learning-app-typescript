@@ -31,7 +31,6 @@ const TodosListRqComponent = () => {
     const [statusFilter, setStatusFilter] = useState<string>('');
 
     const onSuccess =  (data:IToDoResp[]) =>{
-        console.log(data)
         setFilteredTodos(data);
         setOriginalFilteredTodos(data)
     }
