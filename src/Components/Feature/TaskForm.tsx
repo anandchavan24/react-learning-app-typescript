@@ -11,8 +11,7 @@ const TaskForm = () => {
   };
 
   const handleSubmit = (values: TaskFormValues) => {
-    // Handle form submission here
-    console.log(values);
+    //We can perform any action bases on this value
   };
 
   return (
