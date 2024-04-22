@@ -1,11 +1,11 @@
 import './App.css';
 import AddToDo from './Components/Feature/AddToDo';
-import TodoList from './Components/Feature/ToDoList';
 import { BrowserRouter, Routes, Route} from "react-router-dom";
 import TodoItemDetail from './Components/Feature/TodoItemDetail';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import TodosListRqComponent from './Components/Feature/ToDoListRq';
 import TaskForm from './Components/Feature/TaskForm';
+
 
 const queryClient = new QueryClient();
 

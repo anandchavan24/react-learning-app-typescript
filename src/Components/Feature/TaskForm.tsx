@@ -1,6 +1,13 @@
 import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { TaskFormValues } from '../../Shared/types';
+import { Formik, Form, ErrorMessage } from 'formik';
+import { FormGroup, Label, Input, Button, Card, CardBody } from 'reactstrap';
+
+interface TaskFormValues {
+  title: string;
+  description: string;
+  assignee: string;
+  dueDate: Date;
+}
 
 const TaskForm = () => {
   const initialValues: TaskFormValues = {
@@ -11,37 +18,42 @@ const TaskForm = () => {
   };
 
   const handleSubmit = (values: TaskFormValues) => {
-    //We can perform any action bases on this value
+    // Handle form submission here
+    console.log(values);
   };
 
   return (
-    <div>
-      <h1>Task Form</h1>
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-        <Form>
-          <div>
-            <label htmlFor="title">Title</label>
-            <Field type="text" id="title" name="title" />
-            <ErrorMessage name="title" component="div" />
-          </div>
-          <div>
-            <label htmlFor="description">Description</label>
-            <Field as="textarea" id="description" name="description" />
-            <ErrorMessage name="description" component="div" />
-          </div>
-          <div>
-            <label htmlFor="assignee">Assignee</label>
-            <Field type="text" id="assignee" name="assignee" />
-            <ErrorMessage name="assignee" component="div" />
-          </div>
-          <div>
-            <label htmlFor="dueDate">Due Date</label>
-            <Field type="date" id="dueDate" name="dueDate" />
-            <ErrorMessage name="dueDate" component="div" />
-          </div>
-          <button type="submit">Submit</button>
-        </Form>
-      </Formik>
+    <div className="container mt-5">
+      <Card className="w-50 mx-auto">
+        <CardBody>
+          <h1 className="text-center mb-4">Task Form</h1>
+          <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+            <Form>
+              <FormGroup>
+                <Label for="title">Title</Label>
+                <Input type="text" id="title" name="title" className="form-control" />
+                <ErrorMessage name="title" component="div" className="error-message" />
+              </FormGroup>
+              <FormGroup>
+                <Label for="description">Description</Label>
+                <Input type="textarea" id="description" name="description" className="form-control" />
+                <ErrorMessage name="description" component="div" className="error-message" />
+              </FormGroup>
+              <FormGroup>
+                <Label for="assignee">Assignee</Label>
+                <Input type="text" id="assignee" name="assignee" className="form-control" />
+                <ErrorMessage name="assignee" component="div" className="error-message" />
+              </FormGroup>
+              <FormGroup>
+                <Label for="dueDate">Due Date</Label>
+                <Input type="date" id="dueDate" name="dueDate" className="form-control" />
+                <ErrorMessage name="dueDate" component="div" className="error-message" />
+              </FormGroup>
+              <Button type="submit" color="primary" className="w-100 mt-3">Submit</Button>
+            </Form>
+          </Formik>
+        </CardBody>
+      </Card>
     </div>
   );
 };
