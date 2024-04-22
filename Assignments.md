@@ -42,4 +42,10 @@ Status = Done
 
 Module = 0.8 | React Formik
 Branch = assignment/07
+Status = Done
+
+## 6> Replace all the state in the app from useState to useReducer - checkout the starter for useReducer
+
+Module = 0.9 | Reducers in React
+Branch = assignment/07
 Status = InProgress

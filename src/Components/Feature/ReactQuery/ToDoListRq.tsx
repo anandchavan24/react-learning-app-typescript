@@ -1,9 +1,9 @@
 import { useQuery } from 'react-query';
 import { ChangeEvent, useState } from 'react';
-import { IToDoResp } from '../../Shared/types'
-import { API_URL } from '../../Shared/constants';
-import { SortUtils } from '../Utils/SortUtils';
-import TodoListContainer from './ToDoListContainer';
+import { IToDoResp } from '../../../Shared/types'
+import { API_URL } from '../../../Shared/constants';
+import { SortUtils } from '../../Utils/SortUtils';
+import TodoListContainer from '../ToDoListContainer';
 
 const fetchTodos = async ({ pageNumber = 1}) => {
     const queryParams = new URLSearchParams({

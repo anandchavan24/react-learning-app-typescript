@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { IToDoResp, IToDoRespById } from "../../Shared/types";
-import useFetchById from "../Common/useFetchById";
+import { IToDoResp, IToDoRespById } from "../../../Shared/types";
+import useFetchById from "../../Common/useFetchById";
 import { useParams } from "react-router-dom";
 
 const TodoItemDetailRq = () =>{
