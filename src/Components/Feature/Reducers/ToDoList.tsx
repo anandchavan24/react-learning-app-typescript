@@ -2,45 +2,10 @@ import React, { useReducer, ChangeEvent } from 'react';
 import TodoListContainer from '../ToDoListContainer';
 import { useQuery } from 'react-query';
 import { IToDoResp } from '../../../Shared/types';
-import { API_URL } from '../../../Shared/constants';
+import { API_URL, actionTypes, initialState } from '../../../Shared/constants';
 import { SortUtils } from '../../Utils/SortUtils';
+import { reducer } from '../../Utils/Reducers';
 
-const initialState = {
-  pageNumber: 0,
-  originalTodos: [],
-  filteredTodos: [],
-  searchTerm: '',
-  sortBy: '',
-  statusFilter: '',
-};
-
-const actionTypes = {
-  SET_PAGE_NUMBER: 'SET_PAGE_NUMBER',
-  SET_ORIGINAL_TODOS: 'SET_ORIGINAL_TODOS',
-  SET_FILTERED_TODOS: 'SET_FILTERED_TODOS',
-  SET_SEARCH_TERM: 'SET_SEARCH_TERM',
-  SET_SORT_BY: 'SET_SORT_BY',
-  SET_STATUS_FILTER: 'SET_STATUS_FILTER',
-};
-
-const reducer = (state:any, action:any) => {
-  switch (action.type) {
-    case actionTypes.SET_PAGE_NUMBER:
-      return { ...state, pageNumber: action.payload };
-    case actionTypes.SET_ORIGINAL_TODOS:
-      return { ...state, originalTodos: action.payload };
-    case actionTypes.SET_FILTERED_TODOS:
-      return { ...state, filteredTodos: action.payload };
-    case actionTypes.SET_SEARCH_TERM:
-      return { ...state, searchTerm: action.payload };
-    case actionTypes.SET_SORT_BY:
-      return { ...state, sortBy: action.payload };
-    case actionTypes.SET_STATUS_FILTER:
-      return { ...state, statusFilter: action.payload };
-    default:
-      return state;
-  }
-};
 
 const TodoList = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
