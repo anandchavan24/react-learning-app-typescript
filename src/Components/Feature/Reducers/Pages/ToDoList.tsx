@@ -1,14 +1,24 @@
 import React, { useReducer, ChangeEvent } from 'react';
-import TodoListContainer from '../ToDoListContainer';
+import TodoListContainer from '../../ToDoListContainer';
 import { useQuery } from 'react-query';
-import { IToDoResp } from '../../../Shared/types';
-import { API_URL, actionTypes, initialState } from '../../../Shared/constants';
-import { SortUtils } from '../../Utils/SortUtils';
-import { reducer } from '../../Utils/Reducers';
+import { IToDoResp } from '../../../../Shared/types';
+import { API_URL } from '../../../../Shared/constants';
+import { SortUtils } from '../../../Utils/SortUtils';
+import { ToDosListReducers } from '../Common/TodosListReducers';
+import { actionTypes } from '../Action/action';
+
+const initialState = {
+  pageNumber: 0,
+  originalTodos: [],
+  filteredTodos: [],
+  searchTerm: '',
+  sortBy: '',
+  statusFilter: '',
+};
 
 
 const TodoList = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(ToDosListReducers, initialState);
   const { pageNumber, filteredTodos, searchTerm, sortBy, statusFilter,originalTodos } = state;
 
   const onSuccess =  (data:IToDoResp[]) =>{

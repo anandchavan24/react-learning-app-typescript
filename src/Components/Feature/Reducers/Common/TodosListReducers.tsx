@@ -1,6 +1,6 @@
-import { actionTypes } from "../../Shared/constants";
+import { actionTypes } from "../Action/action";
 
-export const reducer = (state:any, action:any) => {
+export const ToDosListReducers = (state:any, action:any) => {
     switch (action.type) {
       case actionTypes.SET_PAGE_NUMBER:
         return { ...state, pageNumber: action.payload };
@@ -14,7 +14,8 @@ export const reducer = (state:any, action:any) => {
         return { ...state, sortBy: action.payload };
       case actionTypes.SET_STATUS_FILTER:
         return { ...state, statusFilter: action.payload };
+    
       default:
         return state;
     }
-  };
+};
