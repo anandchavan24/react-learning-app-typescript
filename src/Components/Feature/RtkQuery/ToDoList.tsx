@@ -29,8 +29,13 @@ const TodoList = () => {
       {todos &&
         todos.map((todo:any) => (
           <div key={todo.id}>
-            <span>{todo.title}</span>
-            <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+            <div className={`todo ${todo.completed ? 'completed' : ''}`}>
+                <input type="checkbox" checked={todo.completed}  />
+                <li key={todo.id}>
+                    {todo.title}
+                </li>
+                <button >Delete</button>
+            </div>
           </div>
         ))}
     </div>
