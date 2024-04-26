@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import {
   useGetTodosQuery,
   useAddTodoMutation,
@@ -10,19 +9,25 @@ const TodoList = () => {
     data: todos,
     error: todosError,
     isLoading: todosLoading,
+    refetch: refetchTodos,
   } = useGetTodosQuery(undefined);
-  const [addTodo, addTodoResult] = useAddTodoMutation();
   const [deleteTodo, deleteTodoResult] = useDeleteTodoMutation();
 
-  useEffect(() => {
-    // Fetch todos on component mount
-    // You can also trigger this based on user actions or other events
-    // For simplicity, this example fetches todos on component mount
-    addTodo({ title: 'New Todo', completed: false }); // Example of adding a todo
-  }, [addTodo]);
 
   if (todosLoading) return <div>Loading...</div>;
-//   if (todosError) return <div>Error: {todosError.status}</div>; // Handle error based on its structure
+  if (todosError) {
+    if ('status' in todosError) {
+      return <div>Error: {todosError.status}</div>;
+    } else {
+      return <div>Error: {todosError.message}</div>;
+    }
+  }
+
+  const handleDeleteTodo = (id:number) => {
+    deleteTodo(id); 
+    refetchTodos()
+  };
+
 
   return (
     <div>
@@ -34,7 +39,7 @@ const TodoList = () => {
                 <li key={todo.id}>
                     {todo.title}
                 </li>
-                <button >Delete</button>
+                <button onClick={() => handleDeleteTodo(todo.id)}>Delete</button>
             </div>
           </div>
         ))}
